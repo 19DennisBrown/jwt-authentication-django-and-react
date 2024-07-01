@@ -1,0 +1,26 @@
+
+
+/* Login page */
+.container{
+  background-color: red;
+  height: 100vh;
+  text-align:center;
+} .form{
+  display: flex;
+  flex-direction: column;
+  max-width: 40vh;
+  margin: 0 auto;
+  gap: 1vh;
+} .input{
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  height: 30px;
+  padding-left: 12px;
+} .fieldset{
+  border-radius: 8px;
+  text-align: left;
+  border: solid black 1px;
+} .input:last-of-type{
+  width: 40vh;
+}

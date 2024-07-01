@@ -1,43 +1,40 @@
-import React, {useState, useEffect, useContext} from 'react'
-import AuthContext from '../../../interface/src/context/AuthContext'
+import React, { useState, useEffect, useContext } from 'react'
+import AuthContext from '../context/AuthContext';
+import Header from '../components/Header'
+
 
 const HomePage = () => {
-    let [notes, setNotes] = useState([])
-    let {authTokens, logoutUser} = useContext(AuthContext)
+    const { authTokens, logoutUser } = useContext(AuthContext);
+    let [profile, setProfile] = useState([])
 
-    useEffect(()=> {
-        getNotes()
-    }, [])
+    useEffect(() => {
+        getProfile()
+    },[])
 
-
-    let getNotes = async() =>{
-        let response = await fetch('http://127.0.0.1:8000/api/notes/', {
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':'Bearer ' + String(authTokens.access)
-            }
+    const getProfile = async() => {
+        let response = await fetch('http://127.0.0.1:8000/api/profile', {
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization':'Bearer ' + String(authTokens.access)
+        }
         })
         let data = await response.json()
-
+        console.log(data)
         if(response.status === 200){
-            setNotes(data)
-        }else if(response.statusText === 'Unauthorized'){
+            setProfile(data)
+        } else if(response.statusText === 'Unauthorized'){
             logoutUser()
         }
-        
     }
 
     return (
         <div>
-            <p>You are logged to the home page!</p>
+            <Header />
 
-
-            <ul>
-                {notes.map(note => (
-                    <li key={note.id} >{note.body}</li>
-                ))}
-            </ul>
+            <h1>You are logged in to the homepage!</h1>
+            <p>Name: {profile.first_name} {profile.last_name}</p>
+            <p>Email: {profile.email}</p>
         </div>
     )
 }

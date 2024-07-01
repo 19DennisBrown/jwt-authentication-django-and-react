@@ -1,0 +1,23 @@
+
+.container{
+  background-color: rgb(77, 36, 43);
+  text-align: center;
+  margin-top: 0;
+  height: 100vh; width: 100vw;
+}
+
+input{
+  border: none;
+  padding: 5px 30px;
+  border-radius: 12px;
+  margin: 10px;
+  outline:none;
+}
+.submit{
+  background: rgb(69, 69, 223);
+  border-radius: 7px;
+}
+fieldset{
+  border-radius: 12px;
+  margin: 20px;
+}
